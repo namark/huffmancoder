@@ -24,7 +24,7 @@ void HuffmanCoder::makeTree(bit8 ** codes)
 {
     Queue< BinTree<unsint> > temp_leaf_queue(leaf_queue);
     while(temp_leaf_queue.getTail())
-        temp_leaf_queue.insertSorted(((--temp_leaf_queue)+(--temp_leaf_queue)).code(codes));
+        temp_leaf_queue.insertSorted(((--temp_leaf_queue)+(--temp_leaf_queue)).code(codes)); // TODO: take care of this undefined behaviour
 
     tree.destroy();
     tree=temp_leaf_queue[0];
@@ -48,7 +48,7 @@ void HuffmanCoder::encode()
 
 
     bit8 * codes[MAX_ALPHABET_SIZE];// will hold a code lengths and codes, which are stored in reverse
-	std::fill_n(codes, MAX_ALPHABET_SIZE*(sizeof(bit8*)), nullptr );
+	std::fill_n(codes, MAX_ALPHABET_SIZE, nullptr );
 
     makeTree(codes);
 
